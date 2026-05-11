@@ -1,4 +1,4 @@
-import { Building2, Globe2, Smartphone, Store } from "lucide-react";
+import { Building2, Globe2, PackageSearch, Smartphone, Store } from "lucide-react";
 
 export type IndustryReport = {
   id: string;
@@ -6,7 +6,7 @@ export type IndustryReport = {
   secondaryCategory: string;
   title: string;
   subtitle: string;
-  iconName: "smartphone" | "globe" | "store" | "building";
+  iconName: "smartphone" | "globe" | "store" | "building" | "package";
   fitRoles: string[];
   executiveSummary: string;
   marketScan: string[];
@@ -28,7 +28,8 @@ export const iconMap = {
   smartphone: Smartphone,
   globe: Globe2,
   store: Store,
-  building: Building2
+  building: Building2,
+  package: PackageSearch
 };
 
 export const industryReports: IndustryReport[] = [
@@ -201,6 +202,92 @@ export const industryReports: IndustryReport[] = [
       "理解 ROAS 和 ROI 的区别，并能说明为什么要结合毛利看。",
       "准备一个库存周转或广告投放分析 case。",
       "关注跨境电商平台、独立站和供应链服务之间的差异。"
+    ]
+  },
+  {
+    id: "internet-supply-chain-analysis",
+    primaryCategory: "互联网",
+    secondaryCategory: "供应链分析",
+    title: "阿里国际供应链分析报告",
+    subtitle: "围绕跨境履约、库存周转、海外仓、商家服务和平台经营效率，理解供应链分析岗位的业务核心。",
+    iconName: "package",
+    fitRoles: ["供应链分析", "商业分析", "经营分析", "数据分析", "跨境履约"],
+    executiveSummary:
+      "阿里国际类业务的供应链分析岗位，通常不只是看物流，而是连接商家供给、平台交易、库存计划、跨境履约、海外仓和售后体验。核心目标是在增长、成本、时效和库存风险之间做平衡。应届生需要理解供应链指标如何影响 GMV、用户体验、商家利润和平台履约能力。",
+    marketScan: [
+      "供给端：平台连接大量中小商家和工厂型卖家，SKU 丰富但供应稳定性、交期和质量差异明显。",
+      "需求端：海外买家对价格、到货时效、物流可追踪性、退货便利性和商品确定性敏感。",
+      "履约端：跨境链路长，涉及揽收、集货、头程、清关、海外仓、尾程派送和逆向退货。",
+      "平台端：需要在商家服务、买家体验和履约成本之间建立标准化能力，用数据识别瓶颈。"
+    ],
+    businessModel: [
+      "交易服务：平台通过交易佣金、商家服务费或增值工具获取收入。",
+      "物流与履约服务：为商家提供跨境物流、海外仓、履约时效承诺和售后解决方案。",
+      "广告与流量：商家购买站内广告、搜索排序或营销资源获取订单。",
+      "供应链金融与工具：围绕备货、账期、ERP、库存预测和履约数据提供服务。"
+    ],
+    valueChain: [
+      "需求预测：基于历史销量、活动节奏、季节性和地区偏好预测 SKU 需求。",
+      "备货计划：决定商家或平台侧安全库存、补货节奏和海外仓配置。",
+      "跨境运输：协调揽收、集货、头程、清关和尾程派送。",
+      "履约监控：追踪妥投时效、异常包裹、丢损率、退货率和客户投诉。",
+      "经营复盘：分析库存积压、缺货损失、物流成本和履约体验对 GMV 的影响。"
+    ],
+    coreMetrics: [
+      "库存周转天数",
+      "缺货率",
+      "库存积压率",
+      "履约时效",
+      "妥投率",
+      "物流成本率",
+      "退货率",
+      "订单取消率",
+      "预测准确率",
+      "海外仓利用率"
+    ],
+    keyPlayers: ["Alibaba International", "AliExpress", "Amazon Global Selling", "SHEIN", "Temu", "菜鸟国际", "DHL / FedEx / UPS"],
+    userSegments: [
+      "平台商家：关注订单增长、物流成本、库存风险和履约评分。",
+      "海外买家：关注价格、到货确定性、物流追踪和售后体验。",
+      "平台经营团队：关注 GMV、履约体验、商家健康度和成本效率。",
+      "物流服务商：关注线路稳定性、清关效率、尾程派送和异常处理。"
+    ],
+    jobMap: [
+      "供应链分析：分析库存、补货、履约、异常和成本，支持策略调整。",
+      "经营分析：把供应链指标和 GMV、利润、买家体验关联起来。",
+      "数据分析：搭建履约看板、异常预警、预测模型和策略实验评估。",
+      "商家运营：帮助商家优化备货、发货承诺、仓配方案和服务评分。"
+    ],
+    analystFocus: [
+      "供应链分析不能只看物流时效，要把库存、成本、转化和体验连起来。",
+      "缺货会损失 GMV，库存积压会占用现金流，两者需要动态平衡。",
+      "跨境链路长，异常归因要按节点拆：商家发货、平台集货、头程、清关、尾程。",
+      "履约承诺会影响前端转化，但过高承诺也可能带来成本和违约风险。"
+    ],
+    trends: [
+      "跨境平台从单纯流量竞争转向供应链和履约能力竞争。",
+      "海外仓、半托管、全托管等模式正在降低商家履约复杂度。",
+      "AI 用于需求预测、库存预警、异常包裹识别和客服自动化。",
+      "平台越来越重视确定性体验，例如更准确的到货时间和更透明的物流追踪。"
+    ],
+    risks: [
+      "需求预测不准会造成缺货或积压，直接影响 GMV 和现金流。",
+      "清关、政策、关税和地区物流波动会影响履约稳定性。",
+      "海外仓成本高，如果周转不足会迅速拖累利润。",
+      "过度追求时效可能导致物流成本率上升，损害经营质量。"
+    ],
+    interviewQuestions: [
+      "如果某国家站点的妥投时效突然变慢，你会如何定位问题？",
+      "如何平衡缺货率和库存积压率？",
+      "如果海外仓利用率很高但 GMV 没有增长，你会怎么分析？",
+      "如何评估一个供应链优化项目是否真的提升了业务结果？"
+    ],
+    keywords: ["库存周转", "缺货率", "海外仓", "妥投率", "预测准确率", "物流成本率", "清关", "半托管", "全托管"],
+    actionChecklist: [
+      "准备一个供应链指标树：需求预测、库存、履约、成本、体验。",
+      "掌握库存周转天数、缺货率、妥投率和物流成本率的业务含义。",
+      "准备一个“异常指标定位”的案例，按链路节点拆解。",
+      "面试前理解跨境电商、平台商家和物流服务商之间的关系。"
     ]
   }
 ];

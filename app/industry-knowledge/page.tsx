@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { toast } from "sonner";
 import {
   ArrowLeft,
+  Bot,
   BookOpenText,
   BriefcaseBusiness,
   Check,
@@ -14,8 +15,10 @@ import {
   Gauge,
   Layers3,
   LineChart,
+  MessageSquareText,
   Save,
   Search,
+  Send,
   Sparkles,
   Target,
   TrendingUp
@@ -34,6 +37,10 @@ export default function IndustryKnowledgePage() {
   const [activePrimary, setActivePrimary] = useState<IndustryReport["primaryCategory"]>(primaryCategories[0]);
   const [activeReportId, setActiveReportId] = useState(industryReports[0].id);
   const [saved, setSaved] = useState(false);
+  const [chatInput, setChatInput] = useState("阿里国际-供应链");
+  const [chatReply, setChatReply] = useState(
+    "你可以输入公司 + 方向，例如“阿里国际-供应链”。当前 Demo 会自动匹配到供应链分析报告，后续可接入真实 chatbot / RAG。"
+  );
 
   const visibleReports = useMemo(
     () => industryReports.filter((report) => report.primaryCategory === activePrimary),
@@ -59,6 +66,23 @@ export default function IndustryKnowledgePage() {
   const saveReport = () => {
     setSaved(true);
     toast.success("已模拟保存到行业知识库");
+  };
+
+  const runChatDemo = () => {
+    const normalized = chatInput.toLowerCase();
+    const supplyChainReport = industryReports.find((report) => report.id === "internet-supply-chain-analysis");
+    if (supplyChainReport && (chatInput.includes("供应链") || normalized.includes("supply"))) {
+      setActivePrimary(supplyChainReport.primaryCategory);
+      setActiveReportId(supplyChainReport.id);
+      setSaved(false);
+      setChatReply(
+        "已识别：阿里国际 / 供应链方向。建议重点学习跨境履约、库存周转、海外仓、妥投率、物流成本率和预测准确率。我已为你切换到《阿里国际供应链分析报告》。"
+      );
+      toast.success("已模拟生成供应链方向行业分析。");
+      return;
+    }
+
+    setChatReply("Demo 暂未命中具体方向。你可以试试输入：阿里国际-供应链。后续这里可以接入真实行业研究 Agent。");
   };
 
   return (
@@ -98,6 +122,47 @@ export default function IndustryKnowledgePage() {
             </p>
           </Card>
         </header>
+
+        <Card className="mb-6 overflow-hidden">
+          <div className="border-b border-slate-200/80 bg-white/60 p-5">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                <Bot className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.18em] text-blue-600">Future Chatbot Entry</p>
+                <h2 className="text-xl font-semibold text-slate-950">行业研究对话框 Demo</h2>
+              </div>
+            </div>
+          </div>
+          <div className="grid gap-4 p-5 lg:grid-cols-[1fr_360px]">
+            <div className="rounded-[24px] border border-slate-200/80 bg-white/70 p-3">
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <input
+                  className="min-h-12 flex-1 rounded-full border border-transparent bg-slate-50 px-5 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-200 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                  value={chatInput}
+                  onChange={(event) => setChatInput(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") {
+                      runChatDemo();
+                    }
+                  }}
+                  placeholder="输入公司 + 方向，例如：阿里国际-供应链"
+                />
+                <Button variant="gradient" onClick={runChatDemo}>
+                  <Send className="h-4 w-4" /> Ask
+                </Button>
+              </div>
+            </div>
+            <div className="rounded-[24px] border border-blue-100 bg-gradient-to-br from-blue-50/80 to-violet-50/70 p-4">
+              <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-blue-700">
+                <MessageSquareText className="h-4 w-4" />
+                Mock Agent Reply
+              </div>
+              <p className="text-sm leading-7 text-slate-700">{chatReply}</p>
+            </div>
+          </div>
+        </Card>
 
         <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
           <aside className="space-y-5">
