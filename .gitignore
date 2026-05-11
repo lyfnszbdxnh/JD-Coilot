@@ -29,6 +29,7 @@ MANIFEST
 *.pyc
 *.png
 *.jpg
+!public/about-avatar.jpg
 
 # Node / Next.js
 node_modules/

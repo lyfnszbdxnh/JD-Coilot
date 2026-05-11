@@ -415,6 +415,9 @@ function Navbar() {
           <Link className="transition hover:text-slate-950" href="/industry-knowledge">
             Knowledge Base
           </Link>
+          <Link className="transition hover:text-slate-950" href="/about">
+            About Me
+          </Link>
         </nav>
         <Button
           size="sm"
